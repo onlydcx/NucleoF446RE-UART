@@ -62,7 +62,8 @@ static void MX_USART6_UART_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+uint8_t data[4];
+int cnt = 0;
 /* USER CODE END 0 */
 
 /**
@@ -103,10 +104,16 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  uint8_t data[4];
+	  uint8_t header[4] = {0x00, 0xFD, 0xFF, 0xFF};
+
+//	  for(int i = 0; i < 4; i++) {
+//		  if(data[i] == header[i]) {
+////			  cnt++;
+//		  }
+//	  }
+
 	  HAL_UART_Receive(&huart6, (uint8_t*)data, sizeof(data)/sizeof(data[0]), 0xFFFF);
-	  printf("%d",data);
-//	  printf("Hello\n");
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
